@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
         <div class="col-sm-12">
-            <h3>Create News</h3>
+            <h3>Edit Testimonial</h3>
         </div>
     </div>
     <div class="row">
@@ -13,22 +13,16 @@
             </div>
 
             <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" class="form-control" placeholder="Max 56 characters" autofocus>
+                <label for="author">Author</label>
+                <input type="text" id="author" name="author" class="form-control" placeholder="Max 56 characters" autofocus value="{{ $data->author }}">>
                 <span class="help-block"></span>
             </div>
 
             <div class="form-group">
-                <textarea id="content" name="content" placeholder="Content"></textarea>
+                <textarea id="content" name="content" placeholder="Content">{{ htmlentities($data->content) }}</textarea>
                 <span class="help-block"></span>
             </div>
         
-            <div class="input-group" id="status">
-                <label class="form-control">Active</label>
-                <span class="input-group-addon">
-                    <input type="checkbox" id="active" aria-label="...">
-                </span>
-            </div><!-- /input-group -->
 
             <div class="form-group">  
                 <button class="btn btn-primary" id="save">Save</button>
@@ -40,5 +34,5 @@
 @section('js-scripts')
     <script src="{{ asset('/js/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('js/helpers.js') }}"></script>
-    <script src="{{ asset('js/createnews.js') }}"></script>
+    <script src="{{ asset('js/createtestimonial.js') }}"></script>
 @endsection

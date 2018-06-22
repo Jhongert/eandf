@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -22,13 +22,13 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/admin', 'AdminController@index')->name('admin');
 
 //News routes
-Route::get('/admin/news/list', 'NewsController@index');
+Route::get('/admin/news', 'NewsController@index');
 Route::get('/admin/news/create', 'NewsController@create');
 Route::post('/admin/news/store', 'NewsController@store');
 Route::get('/admin/news/edit/{id}', 'NewsController@edit');
 
 //Testimonials routs
-Route::get('/admin/testimonials/list', 'TestimonyController@index');
-Route::get('/admin/testimonials/create', 'TestimonyController@create');
-Route::post('/admin/testimonials/store', 'TestimonyController@store');
-Route::get('/admin/testimonials/edit/{id}', 'TestimonyController@edit');
+Route::get('/admin/testimonials', 'TestimonialController@index');
+Route::get('/admin/testimonials/create', 'TestimonialController@create');
+Route::post('/admin/testimonials/store', 'TestimonialController@store');
+Route::get('/admin/testimonials/edit/{id}', 'TestimonialController@edit');

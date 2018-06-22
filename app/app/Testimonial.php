@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class testimony extends Model
+class Testimonial extends Model
 {
     //
 }

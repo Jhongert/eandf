@@ -46,8 +46,8 @@
                         <!-- Authentication Links -->
                        
                         @if (Auth::user())
-                            <li><a href="{{ url('/admin/news/create') }}">News</a></li>
-                            <li><a href="{{ url('/admin/testimonials/create') }}">Testimonials</a></li>
+                            <li><a href="{{ url('/admin/news') }}">News</a></li>
+                            <li><a href="{{ url('/admin/testimonials') }}">Testimonials</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->name }} <span class="caret"></span>

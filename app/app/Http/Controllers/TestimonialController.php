@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\News;
+use App\Testimonial;
 use Illuminate\Http\Request;
 
-class NewsController extends Controller
+class TestimonialController extends Controller
 {
     /**
      * Protect all routes 
@@ -15,7 +15,7 @@ class NewsController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -23,12 +23,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = \App\News::with('user')->where('active', '=', '1')
-        ->orderBy('created_at', 'desc')
-        ->take(6)
-        ->get();
+        $testimonials = \App\Testimonial::all();
 
-        return view('listnews',['news' => $news]);
+        return view('listtestimonials',['testimonials' => $testimonials]);
     }
 
     /**
@@ -38,7 +35,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('createnews');
+        return view('createtestimonial');
     }
 
     /**
@@ -49,26 +46,23 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        $news = new News;
+        $testimonial = new Testimonial;
 
-        $news->title = $request->title;
-        $news->content = $request->content;
-        $news->active = ($request->active == "true") ? 1 : 0;
-        $news->url = strtolower(str_replace(" ", "-",$request->title));
-        $news->user_id = \Auth::User()->id;
+        $testimonial->author = $request->author;
+        $testimonial->content = $request->content;
 
-        $news->save();
+        $testimonial->save();
 
-        return Response()->json(['success' => true, 'id' => $news->id]);
+        return Response()->json(['success' => true, 'id' => $testimonial->id]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\News  $news
+     * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function show(News $news)
+    public function show(Testimony $testimony)
     {
         //
     }
@@ -76,24 +70,24 @@ class NewsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\News  $news
+     * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Testimonial $testimonial, $id)
     {
-        $news = \App\News::where('id', '=', $id)->firstOrFail();
+        $data = $testimonial::where('id', '=', $id)->firstOrFail();
 
-        return view('editnews', ['news' =>  $news]);
+        return view('edittestimonial', ['data' =>  $data]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\News  $news
+     * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, Testimony $testimony)
     {
         //
     }
@@ -101,10 +95,10 @@ class NewsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\News  $news
+     * @param  \App\Testimony  $testimony
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function destroy(Testimony $testimony)
     {
         //
     }
