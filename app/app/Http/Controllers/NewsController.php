@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -13,9 +14,16 @@ class NewsController extends Controller
      */ 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(function($request,$next)
+        {
+            if(!Auth::check()){
+                return redirect()->guest('admin/login')->with('status', 'You are not logged in. Please authenticate.');
+            }
+            
+            return $next($request);
+        });
     }
-    
+
     /**
      * Display a listing of the resource.
      *
@@ -53,13 +61,13 @@ class NewsController extends Controller
 
         $news->title = $request->title;
         $news->content = $request->content;
-        $news->active = ($request->active == "true") ? 1 : 0;
+        $news->active = (int)$request->active;
         $news->url = strtolower(str_replace(" ", "-",$request->title));
-        $news->user_id = \Auth::User()->id;
+        $news->author = $request->author;
 
         $news->save();
 
-        return Response()->json(['success' => true, 'id' => $news->id]);
+        return redirect('/admin/news');
     }
 
     /**
@@ -91,11 +99,13 @@ class NewsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\News  $news
+     * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news)
+    public function update(Request $request, News $news, $id)
     {
-        //
+        $news::find($id);
+        
     }
 
     /**

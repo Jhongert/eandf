@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Testimonial;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class TestimonialController extends Controller
 {
@@ -13,7 +15,14 @@ class TestimonialController extends Controller
      */ 
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(function($request,$next)
+        {
+            if(!Auth::check()){
+                return redirect()->guest('admin/login')->with('status', 'You are not logged in. Please authenticate.');
+            }
+            
+            return $next($request);
+        });
     }
 
     /**

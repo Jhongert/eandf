@@ -3,20 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
-
-                <div class="panel-body">
-                    @if (session('status'))
-                        <div class="alert alert-success">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+        <h1 class="text-center">Admin</h1>
+        <div class="col-md-6 text-center">
+            <h1><a href="{{ url('/admin/news') }}">News</a></h1>
+        </div>
+        <div class="col-md-6 text-center">
+            <h1><a href="{{ url('/admin/testimonials') }}">Testimonials</a></h1>
         </div>
     </div>
 </div>

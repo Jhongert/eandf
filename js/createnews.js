@@ -8,37 +8,42 @@ $(document).ready(function(){
         toolbar: "undo redo removeformat | cut copy paste | bold italic underline strikethrough | bullist numlist"
     });
 
-
     $('#save').on('click', function(event){
-        $(this).attr('disabled', 'disabled');
+        $(this).prop('disabled', true);
 
         if(validate()){
+            $('#content').val(tinymce.get('content').getContent());
+            $('form').submit();
+            // var data = {
+            //     title: $('#title').val().trim(),
+            //     content: tinymce.get('content').getContent(),
+            //     author: $('#author').val().trim(),
+            //     active: $('#active').is(":checked")
+            // }
 
-            var data = {
-                title: $('#title').val().trim(),
-                content: tinymce.get('content').getContent(),
-                active: $('#active').is(":checked")
-            }
+            // $.ajaxSetup({
+            //     headers: {
+            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            //     }
+            // });
 
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            $.ajax({
-                type: 'POST',
-                url: '/admin/news/store',
-                data: data,
-                success: function(data){
-                    console.log(data)
-                    //showMsg(data);
-                }
-            });
+            // $.ajax({
+            //     type: 'POST',
+            //     url: '/admin/news/store',
+            //     data: data,
+            //     success: function(data){
+            //         console.log(data)
+            //         //showMsg(data);
+            //     }
+            // });
+        } else {
+            $(this).prop('disabled', false);
         }
-    });
+
+   });
 
     function validate(){
+        console.log('validating');
         // Remove all error messages and error classes
         $('span.help-block').empty();
         $('.has-error').removeClass('has-error');
@@ -52,8 +57,15 @@ $(document).ready(function(){
         }
 
         // Check if title is longer than 56 characters
-        if (title.val().trim().length > 56){
-            helpBlock(title, 'Title can\'t be longer than 56 characters, current (' + title.val().trim().length + ')');
+        if (title.val().trim().length > 100){
+            helpBlock(title, 'Title can\'t be longer than 100 characters, current (' + title.val().trim().length + ')');
+            return false;
+        }
+
+        var author = $('#author');
+       
+        if (author.val().trim() == ""){
+            helpBlock(author, 'Enter the author');
             return false;
         }
 
