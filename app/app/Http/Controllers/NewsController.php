@@ -31,7 +31,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = \App\News::with('user')->where('active', '=', '1')
+        $news = \App\News::where('active', '=', '1')
         ->orderBy('created_at', 'desc')
         ->take(6)
         ->get();
@@ -57,6 +57,12 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(request(), [
+            'title' => 'bail|required|unique:news|max:70',
+            'author' => 'required',
+            'content' => 'required'
+        ]);
+        
         $news = new News;
 
         $news->title = $request->title;

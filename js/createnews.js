@@ -4,8 +4,9 @@ $(document).ready(function(){
         selector: '#content',
         branding: false,
         height : 300,
-        menubar: false,
-        toolbar: "undo redo removeformat | cut copy paste | bold italic underline strikethrough | bullist numlist"
+        plugins: 'table lists code wordcount',
+        menubar: 'file edit insert view format table tools',
+        toolbar: 'undo redo removeformat | formatselect | cut copy paste | bold italic underline strikethrough | bullist numlist'
     });
 
     $('#save').on('click', function(event){
@@ -14,28 +15,6 @@ $(document).ready(function(){
         if(validate()){
             $('#content').val(tinymce.get('content').getContent());
             $('form').submit();
-            // var data = {
-            //     title: $('#title').val().trim(),
-            //     content: tinymce.get('content').getContent(),
-            //     author: $('#author').val().trim(),
-            //     active: $('#active').is(":checked")
-            // }
-
-            // $.ajaxSetup({
-            //     headers: {
-            //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //     }
-            // });
-
-            // $.ajax({
-            //     type: 'POST',
-            //     url: '/admin/news/store',
-            //     data: data,
-            //     success: function(data){
-            //         console.log(data)
-            //         //showMsg(data);
-            //     }
-            // });
         } else {
             $(this).prop('disabled', false);
         }
@@ -57,8 +36,8 @@ $(document).ready(function(){
         }
 
         // Check if title is longer than 56 characters
-        if (title.val().trim().length > 100){
-            helpBlock(title, 'Title can\'t be longer than 100 characters, current (' + title.val().trim().length + ')');
+        if (title.val().trim().length > 70){
+            helpBlock(title, 'Title can\'t be longer than 70 characters, current (' + title.val().trim().length + ')');
             return false;
         }
 

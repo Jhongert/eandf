@@ -7,12 +7,24 @@
             <div id="msg-container">
                 <p id="msg"></p>
             </div>
+
+            <!-- Display server side validation errors  -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form method="post" action="/admin/news/store">
                 {{ csrf_field() }}
 
                 <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" id="title" name="title" class="form-control" placeholder="Max 100 characters" autofocus>
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" class="form-control" placeholder="Max 70 characters" autofocus value="{{ old('title') }}">
                     <span class="help-block"></span>
                 </div>
 
@@ -23,6 +35,7 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="author">Article:</label>
                     <textarea id="content" name="content" placeholder="Content"></textarea>
                     <span class="help-block"></span>
                 </div>
