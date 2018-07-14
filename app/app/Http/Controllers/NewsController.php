@@ -35,7 +35,7 @@ class NewsController extends Controller
         $news = News::orderBy('created_at', 'desc')
         ->get();
 
-        return view('listnews',['news' => $news]);
+        return view('admin.news.list',['news' => $news]);
     }
 
     /**
@@ -45,7 +45,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        return view('createnews');
+        return view('admin.news.create');
     }
 
     /**
@@ -96,7 +96,7 @@ class NewsController extends Controller
     {
         $news = \App\News::where('id', '=', $id)->firstOrFail();
 
-        return view('editnews', ['news' =>  $news]);
+        return view('admin.news.edit', ['news' =>  $news]);
     }
 
     /**

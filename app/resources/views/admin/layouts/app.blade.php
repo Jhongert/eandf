@@ -43,7 +43,26 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        
+                        <!-- Authentication Links -->
+                       
+                        @if (Auth::user())
+                            @if(!Request::is('admin'))
+                                <li>
+                                <a href="{{ route('admin') }}">Admin</a>
+                                </li>
+                            @endif 
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                        @endif
                     </ul>
                 </div>
             </div>
