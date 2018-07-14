@@ -21,8 +21,13 @@
                     </div>
                     <div class="text-center">
                         <a href="/admin/news/{{ $item->id }}" class="btn btn-success">Edit</a>
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal">Delete</button>
-                        <!-- <a href="/admin/news/delete/{{ $item->id }}" class="btn btn-default btn-sm btn-edit">Delete</a> -->
+                        <form action="/admin/news/{{ $item->id }}" method="post" id="form-{{$item->id}}">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                        </form>
+                        <button type="button" class="btn btn-danger delete" data-id="{{$item->id}}">Delete</button>
+
+                        <!-- <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#modal">Delete</button> -->
                     </div>
                 </div>
                 @endforeach
@@ -43,9 +48,29 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="/admin/news/delete/{{ $item->id }}" class="btn btn-danger">Delete</a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete">Delete</delete>
+
+                    <!-- <a href="/admin/news/delete/{{ $item->id }}" class="btn btn-danger">Delete</a> -->
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('js-scripts')
+    <script>
+        $(document).ready(function(){
+            $(document).on('click', '.delete', function(){
+                var id = $(this).data('id');
+                $('#modal').modal();
+                $('#delete').data('id', id);
+            });
+
+            $('#delete').click(function(){ 
+                var form = $('#form-' + $(this).data('id'));
+                form.submit();
+                
+            });
+        });
+    </script>
 @endsection

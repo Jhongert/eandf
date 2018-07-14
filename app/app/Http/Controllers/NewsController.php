@@ -141,7 +141,7 @@ class NewsController extends Controller
     {
         $news = News::findOrFail($id);
 
-        $news->destroy();
+        $news->delete();
 
         return redirect('/admin/news');
     }
