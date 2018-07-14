@@ -41,7 +41,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <!-- <h4 class="modal-title" id="myModalLabel">Modal title</h4> -->
                 </div>
                 <div class="modal-body">
                     <p>Are you sure you want to delete this news?</p>
@@ -49,8 +48,6 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     <button type="button" class="btn btn-danger" data-dismiss="modal" id="delete">Delete</delete>
-
-                    <!-- <a href="/admin/news/delete/{{ $item->id }}" class="btn btn-danger">Delete</a> -->
                 </div>
             </div>
         </div>
@@ -69,7 +66,6 @@
             $('#delete').click(function(){ 
                 var form = $('#form-' + $(this).data('id'));
                 form.submit();
-                
             });
         });
     </script>

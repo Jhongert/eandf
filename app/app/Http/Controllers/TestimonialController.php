@@ -34,7 +34,7 @@ class TestimonialController extends Controller
     {
         $testimonials = \App\Testimonial::all();
 
-        return view('listtestimonials',['testimonials' => $testimonials]);
+        return view('admin.testimonials.list',['testimonials' => $testimonials]);
     }
 
     /**
