@@ -24,9 +24,10 @@ Route::get('/admin', 'AdminController@index')->name('admin');
 //News routes
 Route::get('/admin/news', 'NewsController@index');
 Route::get('/admin/news/create', 'NewsController@create');
-Route::post('/admin/news/store', 'NewsController@store');
-Route::get('/admin/news/edit/{id}', 'NewsController@edit');
-Route::put('/admin/news/update/{id}', 'NewsController@update');
+Route::post('/admin/news', 'NewsController@store');
+Route::get('/admin/news/{id}', 'NewsController@edit');
+Route::put('/admin/news/{id}', 'NewsController@update');
+Route::delete('/admin/news/{id}', 'NewsController@destroy');
 
 //Testimonials routs
 Route::get('/admin/testimonials', 'TestimonialController@index');

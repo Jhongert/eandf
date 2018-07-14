@@ -16,9 +16,9 @@
                 </div>
             @endif
 
-            <form method="post" action="/admin/news/update/{{$news->id}}">
+            <form method="post" action="/admin/news/{{$news->id}}">
                 {{ csrf_field() }}
-                <input name="_method" type="hidden" value="PUT">
+                {{ method_field('PUT')}}
 
                 <div class="form-group">
                     <label for="title">Title:</label>

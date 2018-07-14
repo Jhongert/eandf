@@ -137,8 +137,12 @@ class NewsController extends Controller
      * @param  \App\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news)
+    public function destroy(News $news, $id)
     {
-        //
+        $news = News::findOrFail($id);
+
+        $news->destroy();
+
+        return redirect('/admin/news');
     }
 }
