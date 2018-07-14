@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class NewsController extends Controller
 {
@@ -31,9 +32,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = \App\News::where('active', '=', '1')
-        ->orderBy('created_at', 'desc')
-        ->take(6)
+        $news = News::orderBy('created_at', 'desc')
         ->get();
 
         return view('listnews',['news' => $news]);
@@ -62,7 +61,7 @@ class NewsController extends Controller
             'author' => 'required',
             'content' => 'required'
         ]);
-        
+
         $news = new News;
 
         $news->title = $request->title;
@@ -109,9 +108,27 @@ class NewsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, News $news, $id)
-    {
-        $news::find($id);
-        
+    {   
+        $this->validate(request(), [
+            'title' => ['bail',
+                'required',
+                'max:70',
+                Rule::unique('news')->ignore($id)],
+            'author' => 'required',
+            'content' => 'required'
+        ]);
+
+        $news = News::find($id);
+
+        $news->title = $request->title;
+        $news->content = $request->content;
+        $news->active = (int)$request->active;
+        $news->url = strtolower(str_replace(" ", "-",$request->title));
+        $news->author = $request->author;
+
+        $news->save();
+
+        return redirect('/admin/news');
     }
 
     /**

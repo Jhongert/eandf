@@ -26,6 +26,7 @@ Route::get('/admin/news', 'NewsController@index');
 Route::get('/admin/news/create', 'NewsController@create');
 Route::post('/admin/news/store', 'NewsController@store');
 Route::get('/admin/news/edit/{id}', 'NewsController@edit');
+Route::put('/admin/news/update/{id}', 'NewsController@update');
 
 //Testimonials routs
 Route::get('/admin/testimonials', 'TestimonialController@index');

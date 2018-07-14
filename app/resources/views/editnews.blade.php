@@ -16,14 +16,16 @@
                 </div>
             @endif
 
-            <form method="post" action="/admin/news/store">
+            <form method="post" action="/admin/news/update/{{$news->id}}">
                 {{ csrf_field() }}
+                <input name="_method" type="hidden" value="PUT">
 
                 <div class="form-group">
                     <label for="title">Title:</label>
                     <input type="text" id="title" name="title" class="form-control" placeholder="Max 56 characters" autofocus value="{{ $news->title }}">
                     <span class="help-block"></span>
                 </div>
+
                 <div class="form-group">
                     <label for="author">Author:</label>
                     <input type="text" id="author" name="author" class="form-control" placeholder="Max 56 characters" autofocus value="{{ $news->author }}">
@@ -37,21 +39,21 @@
                 </div>
             
                 <div class="form-group" id="status">
-                    <input type="checkbox" id="active"
+                    <input type="checkbox" id="active" name="active" value="1"
                         @if($news->active == 1)
                             checked  
                         @endif
                     >
                     <label for="active">Active?</label>
                 </div>
-
-                <div class="form-group col-sm-6 text-right">  
-                    <button class="btn btn-primary" id="save">Add news article</button>
-                </div>
-                <div class="form-group col-sm-6 text-left">  
-                    <button class="btn btn-primary" id="cancel">Cancel</button>
-                </div>
             </form>
+            <div class="form-group col-sm-6 text-right">  
+                <button class="btn btn-primary" id="save">Update news article</button>
+            </div>
+            <div class="form-group col-sm-6 text-left">  
+                <a href="/admin/news" class="btn btn-primary" id="cancel">Cancel</a>
+            </div>
+            
         </div>
     </div>
 @endsection

@@ -4,9 +4,6 @@
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <h3>Create News</h3>
-            <div id="msg-container">
-                <p id="msg"></p>
-            </div>
 
             <!-- Display server side validation errors  -->
             @if ($errors->any())

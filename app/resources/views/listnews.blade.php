@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-sm-12">
             <h1 class="text-center">Admin: news</h1>
-            <h3 class="text-center"><a href="#">ADD NEWS ARTICLE</a></h3>
+            <h3 class="text-center"><a href="/admin/news/create">ADD NEWS ARTICLE</a></h3>
             @if (count($news) > 0 )
                 @foreach ($news as $item)
                 <div style="background-color: #ececec; padding: 20px; margin-bottom: 40px">
