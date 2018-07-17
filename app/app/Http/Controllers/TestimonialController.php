@@ -51,12 +51,6 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        // $categories = [
-        //     ['value' => 'divorce_family', 'label' => 'Divorce &amp; Family Law'],
-        //     ['value' => 'bankruptcy', 'label' => 'Bankruptcy'],
-        //     ['value' => 'personal_injury', 'label' => 'Personal Injury']
-        // ];
-
         return view('admin.testimonials.create',['categories' => $this->categories]);
     }
 
@@ -105,9 +99,6 @@ class TestimonialController extends Controller
      */
     public function edit(Testimonial $testimonial, $id)
     {   
-        
-        // $categories = ['Divorce and Family Law', 'Bankruptcy', 'Personal Injury'];
-
         $data = Testimonial::where('id', '=', $id)->firstOrFail();
 
         return view('admin.testimonials.edit', ['data' => $data, 'categories' => $this->categories]);

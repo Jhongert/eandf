@@ -27,19 +27,23 @@
 
                 <div class="form-group">
                     <label for="author">Author:</label>
-                    <input type="text" id="author" name="author" class="form-control">
+                    <input type="text" id="author" name="author" class="form-control" value="{{ old('author') }}">
                     <span class="help-block"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="author">Article:</label>
-                    <textarea id="content" name="content"></textarea>
+                    <textarea id="content" name="content">{{ old('content') }}</textarea>
                     <span class="help-block"></span>
                 </div>
             
                 <div class="form-group" id="status">
-                        <input type="checkbox" id="active" name="active" value="1">
-                        <label for="active">Active?</label>
+                    <input type="checkbox" id="active" name="active" value="1"
+                    @if(old('active') == 1)
+                        checked
+                    @endif
+                    >
+                    <label for="active">Active?</label>
                 </div>
             </form>
         </div>
