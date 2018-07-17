@@ -46,27 +46,26 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="category">Category</label>
-                        @for($i=0; $i < 3; $i++)
+                        <!-- @for($i=0; $i < count($categories); $i++)
                             <div class="radio">
                                 <label>
-                                    <input type="radio" name="category" value="{{ strtolower($categories[$i])}}"
-                                    @if($data->category === strtolower($categories[$i]))
+                                    <input type="radio" name="category" value="{{ $categories[$i]['value'] }}"
+                                    @if($data->category === $categories[$i]['value'])
                                         checked
                                     @endif
-                                    >{{ $categories[$i]}}
+                                    >{{ $categories[$i]['label']}}
                                 </label>
                             </div>
-                        @endfor
-                        <!-- <select id="category" name="category" class="form-control">
-                            @for($i=0; $i < 3; $i++)
-                                <option 
-                                    value="{{ strtolower($categories[$i])}}"
-                                    @if($data->category === strtolower($categories[$i]))
+                        @endfor -->
+                        <select id="category" name="category" class="form-control">
+                            @for($i = 0; $i < count($categories); $i++)
+                                <option value="{{ $categories[$i]['value'] }}"
+                                    @if($data->category === $categories[$i]['value'])
                                         selected
                                     @endif
-                                >{{ $categories[$i] }}</option>
+                                >{{ $categories[$i]['label'] }}</option>
                             @endfor
-                        </select> -->
+                        </select>
                         <span class="help-block"></span>
                     </div>
                 </div>

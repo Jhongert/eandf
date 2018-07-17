@@ -25,6 +25,12 @@ class TestimonialController extends Controller
         });
     }
 
+    protected $categories = [
+        ['value' => 'divorce-and-family-low', 'label' => 'Divorce &amp; Family Law'],
+        ['value' => 'bankruptcy', 'label' => 'Bankruptcy'],
+        ['value' => 'personal-injury', 'label' => 'Personal Injury']
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +51,13 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        return view('admin.testimonials.create');
+        // $categories = [
+        //     ['value' => 'divorce_family', 'label' => 'Divorce &amp; Family Law'],
+        //     ['value' => 'bankruptcy', 'label' => 'Bankruptcy'],
+        //     ['value' => 'personal_injury', 'label' => 'Personal Injury']
+        // ];
+
+        return view('admin.testimonials.create',['categories' => $this->categories]);
     }
 
     /**
@@ -93,11 +105,12 @@ class TestimonialController extends Controller
      */
     public function edit(Testimonial $testimonial, $id)
     {   
-        $categories = ['Divorce and Family Law', 'Bankruptcy', 'Personal Injury'];
+        
+        // $categories = ['Divorce and Family Law', 'Bankruptcy', 'Personal Injury'];
 
-        $data = $testimonial::where('id', '=', $id)->firstOrFail();
+        $data = Testimonial::where('id', '=', $id)->firstOrFail();
 
-        return view('admin.testimonials.edit', compact('data', 'categories'));
+        return view('admin.testimonials.edit', ['data' => $data, 'categories' => $this->categories]);
     }
 
     /**

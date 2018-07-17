@@ -24,27 +24,37 @@
                     <textarea id="content" name="content" autofocus></textarea>
                     <span class="help-block"></span>
                 </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" id="author" name="author" class="form-control">
+                        <span class="help-block"></span>
+                    </div>
 
-                <div class="form-group">
-                    <label for="author">Author</label>
-                    <input type="text" id="author" name="author" class="form-control">
-                    <span class="help-block"></span>
+                    <div class="form-group" id="status">
+                        <input type="checkbox" id="active" name="active" value="1">
+                        <label for="active">Active?</label>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="category">Category</label>
-                    <select id="category" name="category" class="form-control">
-                        <option value="">Choose...</option>
-                        <option value="divorce and family low">Divorve and Family Law</option>
-                        <option value="bankruptcy">Bankruptcy</option>
-                        <option value="personal injury">Personal Injury</option>
-                    </select>
-                    <span class="help-block"></span>
-                </div>
-
-                <div class="form-group" id="status">
-                    <input type="checkbox" id="active" name="active" value="1">
-                    <label for="active">Active?</label>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <!-- @for($i = 0; $i < count($categories); $i++)
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="category" value="{{ $categories[$i]['value'] }}">{{ $categories[$i]['label'] }}
+                                </label>
+                            </div>
+                        @endfor -->
+                        <select id="category" name="category" class="form-control">
+                            <option value="">Choose...</option>
+                            @for($i = 0; $i < count($categories); $i++)
+                                <option value="{{ $categories[$i]['value'] }}">{{ $categories[$i]['label'] }}</option>
+                            @endfor
+                        </select>
+                        <span class="help-block"></span>
+                    </div>
                 </div>
             </form>
         </div>

@@ -34,11 +34,11 @@ $(document).ready(function(){
         }
 
         // // Check if category is empty
-        // var category = $('#category');
-        // if (category.val().trim() == ""){
-        //     helpBlock(category, 'Enter the category');
-        //     return false;
-        // }
+        var category = $('#category');
+        if (category.val().trim() == ""){
+            helpBlock(category, 'Enter the category');
+            return false;
+        }
 
          // Check for empty content
         var textArea = $('#content');
