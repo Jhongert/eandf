@@ -32,7 +32,8 @@ class TestimonialController extends Controller
      */
     public function index()
     {
-        $testimonials = \App\Testimonial::all();
+        $testimonials = Testimonial::orderBy('created_at', 'desc')
+        ->get();
 
         return view('admin.testimonials.list',['testimonials' => $testimonials]);
     }
@@ -44,7 +45,7 @@ class TestimonialController extends Controller
      */
     public function create()
     {
-        return view('createtestimonial');
+        return view('admin.testimonials.create');
     }
 
     /**
@@ -55,23 +56,31 @@ class TestimonialController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate(request(), [
+            'author' => 'required',
+            'category' => 'required',
+            'content' => 'required'
+        ]);
+
         $testimonial = new Testimonial;
 
         $testimonial->author = $request->author;
         $testimonial->content = $request->content;
+        $testimonial->category = $request->category;
+        $testimonial->active = (int)$request->active;
 
         $testimonial->save();
-
-        return Response()->json(['success' => true, 'id' => $testimonial->id]);
+        
+        return redirect('admin/testimonials');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Testimony  $testimony
+     * @param  \App\testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function show(Testimony $testimony)
+    public function show(Testimonial $testimonial)
     {
         //
     }
@@ -79,36 +88,57 @@ class TestimonialController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Testimony  $testimony
+     * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
     public function edit(Testimonial $testimonial, $id)
-    {
+    {   
+        $categories = ['Divorce and Family Law', 'Bankruptcy', 'Personal Injury'];
+
         $data = $testimonial::where('id', '=', $id)->firstOrFail();
 
-        return view('edittestimonial', ['data' =>  $data]);
+        return view('admin.testimonials.edit', compact('data', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Testimony  $testimony
+     * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Testimony $testimony)
+    public function update(Request $request, Testimonial $testimonial, $id)
     {
-        //
+        $this->validate(request(), [
+            'author' => 'required',
+            'category' => 'required',
+            'content' => 'required'
+        ]);
+
+        $testimonial = Testimonial::find($id);
+
+        $testimonial->author = $request->author;
+        $testimonial->content = $request->content;
+        $testimonial->category = $request->category;
+        $testimonial->active = (int)$request->active;
+
+        $testimonial->save();
+        
+        return redirect('admin/testimonials');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Testimony  $testimony
+     * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testimony $testimony)
+    public function destroy(Testimonial $testimonial, $id)
     {
-        //
+        $testimonial = Testimonial::findOrFail($id);
+
+        $testimonial->delete();
+
+        return redirect('/admin/testimonials');
     }
 }

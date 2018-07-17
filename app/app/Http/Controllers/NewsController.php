@@ -94,7 +94,7 @@ class NewsController extends Controller
      */
     public function edit($id)
     {
-        $news = \App\News::where('id', '=', $id)->firstOrFail();
+        $news = News::where('id', '=', $id)->firstOrFail();
 
         return view('admin.news.edit', ['news' =>  $news]);
     }

@@ -61,5 +61,5 @@
 @section('js-scripts')
     <script src="{{ asset('/js/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('js/helpers.js') }}"></script>
-    <script src="{{ asset('js/createnews.js') }}"></script>
+    <script src="{{ asset('js/news.js') }}"></script>
 @endsection

@@ -1,9 +1,5 @@
 @extends('admin.layouts.app')
 
-@section('css')
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-@endsection
-
 @section('content')
 
     <div class="row">
@@ -20,14 +16,12 @@
                         {!! $item->content !!}
                     </div>
                     <div class="text-center">
-                        <a href="/admin/news/{{ $item->id }}" class="btn btn-success">Edit</a>
                         <form action="/admin/news/{{ $item->id }}" method="post" id="form-{{$item->id}}">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                         </form>
+                        <a href="/admin/news/{{ $item->id }}" class="btn btn-success">Edit</a>
                         <button type="button" class="btn btn-danger delete" data-id="{{$item->id}}">Delete</button>
-
-                        <!-- <button type="button" class="btn btn-danger delete" data-toggle="modal" data-target="#modal">Delete</button> -->
                     </div>
                 </div>
                 @endforeach

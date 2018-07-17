@@ -33,7 +33,7 @@
 
                 <div class="form-group">
                     <label for="author">Article:</label>
-                    <textarea id="content" name="content" placeholder="Content"></textarea>
+                    <textarea id="content" name="content"></textarea>
                     <span class="help-block"></span>
                 </div>
             
@@ -47,7 +47,7 @@
                 <button class="btn btn-primary" id="save">Add news article</button>
             </div>
             <div class="form-group col-sm-6 text-left">  
-                <button class="btn btn-primary" id="cancel">Cancel</button>
+                <a href="/admin/news" class="btn btn-primary" id="cancel">Cancel</a>
             </div>
         </div>
     </div>
@@ -56,5 +56,5 @@
 @section('js-scripts')
     <script src="{{ asset('/js/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('js/helpers.js') }}"></script>
-    <script src="{{ asset('js/createnews.js') }}"></script>
+    <script src="{{ asset('js/news.js') }}"></script>
 @endsection

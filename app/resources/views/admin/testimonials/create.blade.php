@@ -1,37 +1,57 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
 @section('content')
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-md-10 col-md-offset-1">
             <h3>Create Testimonial</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <div id="msg-container">
-                <p id="msg"></p>
-            </div>
 
-            <div class="form-group">
-                <label for="author">Author</label>
-                <input type="text" id="author" name="author" class="form-control" placeholder="Max 56 characters" autofocus>
-                <span class="help-block"></span>
-            </div>
+            <!-- Display server side validation errors  -->
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-            <div class="form-group">
-                <textarea id="content" name="content" placeholder="Content"></textarea>
-                <span class="help-block"></span>
-            </div>
-        
-            <!-- <div class="input-group" id="status">
-                <label class="form-control">Active</label>
-                <span class="input-group-addon">
-                    <input type="checkbox" id="active" aria-label="...">
-                </span>
-            </div> -->
+            <form method="post" action="/admin/testimonials">
+                {{ csrf_field() }}
 
-            <div class="form-group">  
-                <button class="btn btn-primary" id="save">Save</button>
+                <div class="form-group">
+                    <label for="content">Testimonial:</label>
+                    <textarea id="content" name="content" autofocus></textarea>
+                    <span class="help-block"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="author">Author</label>
+                    <input type="text" id="author" name="author" class="form-control">
+                    <span class="help-block"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" class="form-control">
+                        <option value="">Choose...</option>
+                        <option value="divorce and family low">Divorve and Family Law</option>
+                        <option value="bankruptcy">Bankruptcy</option>
+                        <option value="personal injury">Personal Injury</option>
+                    </select>
+                    <span class="help-block"></span>
+                </div>
+
+                <div class="form-group" id="status">
+                    <input type="checkbox" id="active" name="active" value="1">
+                    <label for="active">Active?</label>
+                </div>
+            </form>
+            <div class="form-group col-sm-6 text-right">  
+                <button class="btn btn-primary" id="save">Add testimonial</button>
+            </div>
+            <div class="form-group col-sm-6 text-left">  
+                <button class="btn btn-primary" id="cancel">Cancel</button>
             </div>
         </div>
     </div>
@@ -40,5 +60,5 @@
 @section('js-scripts')
     <script src="{{ asset('/js/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('js/helpers.js') }}"></script>
-    <script src="{{ asset('js/createtestimonial.js') }}"></script>
+    <script src="{{ asset('js/testimonials.js') }}"></script>
 @endsection

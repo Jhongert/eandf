@@ -32,5 +32,8 @@ Route::delete('/admin/news/{id}', 'NewsController@destroy');
 //Testimonials routs
 Route::get('/admin/testimonials', 'TestimonialController@index');
 Route::get('/admin/testimonials/create', 'TestimonialController@create');
-Route::post('/admin/testimonials/store', 'TestimonialController@store');
-Route::get('/admin/testimonials/edit/{id}', 'TestimonialController@edit');
+Route::post('/admin/testimonials', 'TestimonialController@store');
+Route::put('/admin/testimonials/{id}', 'TestimonialController@update');
+Route::get('/admin/testimonials/{id}', 'TestimonialController@edit');
+Route::delete('/admin/testimonials/{id}', 'TestimonialController@destroy');
+
