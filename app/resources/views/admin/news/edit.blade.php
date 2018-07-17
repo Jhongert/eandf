@@ -47,13 +47,10 @@
                     <label for="active">Active?</label>
                 </div>
             </form>
-            <div class="form-group col-sm-6 text-right">  
-                <button class="btn btn-primary" id="save">Update news article</button>
-            </div>
-            <div class="form-group col-sm-6 text-left">  
-                <a href="/admin/news" class="btn btn-primary" id="cancel">Cancel</a>
-            </div>
-            
+        </div>
+        <div class="text-center">  
+            <button class="btn btn-primary" id="save">Update news article</button>
+            <a href="/admin/news" class="btn btn-primary" id="cancel">Cancel</a>
         </div>
     </div>
 @endsection

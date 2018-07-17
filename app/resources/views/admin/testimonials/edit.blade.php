@@ -26,42 +26,55 @@
                     <span class="help-block"></span>
                 </div>
 
-                <div class="form-group">
-                    <label for="author">Author</label>
-                    <input type="text" id="author" name="author" class="form-control" value="{{ $data->author }}">
-                    <span class="help-block"></span>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="author">Author</label>
+                        <input type="text" id="author" name="author" class="form-control" value="{{ $data->author }}">
+                        <span class="help-block"></span>
+                    </div>
+
+                    <div class="form-group" id="status">
+                        <input type="checkbox" id="active" name="active" value="1"
+                            @if($data->active == 1)
+                                checked  
+                            @endif
+                        >
+                        <label for="active">Active?</label>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="category">Category</label>
-                    <select id="category" name="category" class="form-control">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="category">Category</label>
                         @for($i=0; $i < 3; $i++)
-                            <option 
-                                value="{{ strtolower($categories[$i])}}"
-                                @if($data->category === strtolower($categories[$i]))
-                                    selected
-                                @endif
-                            >{{ $categories[$i] }}</option>
+                            <div class="radio">
+                                <label>
+                                    <input type="radio" name="category" value="{{ strtolower($categories[$i])}}"
+                                    @if($data->category === strtolower($categories[$i]))
+                                        checked
+                                    @endif
+                                    >{{ $categories[$i]}}
+                                </label>
+                            </div>
                         @endfor
-                     </select>
-                    <span class="help-block"></span>
-                </div>
-
-                <div class="form-group" id="status">
-                    <input type="checkbox" id="active" name="active" value="1"
-                        @if($data->active == 1)
-                            checked  
-                        @endif
-                    >
-                    <label for="active">Active?</label>
+                        <!-- <select id="category" name="category" class="form-control">
+                            @for($i=0; $i < 3; $i++)
+                                <option 
+                                    value="{{ strtolower($categories[$i])}}"
+                                    @if($data->category === strtolower($categories[$i]))
+                                        selected
+                                    @endif
+                                >{{ $categories[$i] }}</option>
+                            @endfor
+                        </select> -->
+                        <span class="help-block"></span>
+                    </div>
                 </div>
             </form>
-            <div class="form-group col-sm-6 text-right">  
-                <button class="btn btn-primary" id="save">Update testimonial</button>
-            </div>
-            <div class="form-group col-sm-6 text-left">  
-                <a href="/admin/testimonials" class="btn btn-primary" id="cancel">Cancel</a>
-            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-primary" id="save">Update testimonial</button>
+            <a href="/admin/testimonials" class="btn btn-primary" id="cancel">Cancel</a>
         </div>
     </div>
 @endsection

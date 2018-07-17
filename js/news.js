@@ -11,7 +11,6 @@ $(document).ready(function(){
 
     $('#save').on('click', function(event){
         $(this).prop('disabled', true);
-        $e.preventDefault();
         
         if(validate()){
             $('#content').val(tinymce.get('content').getContent());

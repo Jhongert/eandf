@@ -47,12 +47,10 @@
                     <label for="active">Active?</label>
                 </div>
             </form>
-            <div class="form-group col-sm-6 text-right">  
-                <button class="btn btn-primary" id="save">Add testimonial</button>
-            </div>
-            <div class="form-group col-sm-6 text-left">  
-                <button class="btn btn-primary" id="cancel">Cancel</button>
-            </div>
+        </div>
+        <div class="text-center">  
+            <button class="btn btn-primary" id="save">Update news article</button>
+            <a href="/admin/news" class="btn btn-primary" id="cancel">Cancel</a>
         </div>
     </div>
 @endsection

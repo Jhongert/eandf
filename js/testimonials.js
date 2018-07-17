@@ -13,10 +13,10 @@ $(document).ready(function(){
     $('#save').on('click', function(e){
         $(this).prop('disabled', true);
 
-        if(validate()){
-            $('#content').val(tinymce.get('content').getContent());
-            $('form').submit();
-        } else {
+         if(validate()){
+             $('#content').val(tinymce.get('content').getContent());
+             $('form').submit();
+         } else {
             $(this).prop('disabled', false);
         }
     });
@@ -33,12 +33,12 @@ $(document).ready(function(){
             return false;
         }
 
-        // Check if category is empty
-        var category = $('#category');
-        if (category.val().trim() == ""){
-            helpBlock(category, 'Enter the category');
-            return false;
-        }
+        // // Check if category is empty
+        // var category = $('#category');
+        // if (category.val().trim() == ""){
+        //     helpBlock(category, 'Enter the category');
+        //     return false;
+        // }
 
          // Check for empty content
         var textArea = $('#content');
