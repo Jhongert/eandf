@@ -43,11 +43,13 @@ Route::view('personal-injury', 'personal-injury', ['title' => 'Personal Injury']
 Route::view('premises-liability', 'premises-liability', ['title' => 'Premises Liability: Who Is At Fault']);
 Route::view('privacy-policy', 'privacy-policy', ['title' => 'Privacy Policy']);
 Route::view('property-division', 'property-division', ['title' => 'Property Division']);
-Route::view('property-division', 'property-division', ['title' => 'Property Division']);
-
-
-
-
+Route::view('property-keep', 'property-keep', ['title' => 'What Property Can I Keep']);
+Route::view('reaffirmation-agreements', 'reaffirmation-agreements', ['title' => 'Reaffirmation Agreements']);
+Route::view('rebuild-credit', 'rebuild-credit', ['title' => 'Rebuild Credit After Filing Bankruptcy']);
+Route::view('relocation-minor-children', 'relocation-minor-children', ['title' => 'Relocation of Minor Children']);
+Route::view('restaurant-store-injuries', 'restaurant-store-injuries', ['title' => 'Restaurant/Store Injuries']);
+Route::view('richard-freedman', 'richard-freedman', ['title' => 'Richard L. Freedman']);
+Route::view('testimonials', 'testimonials', ['title' => 'Testimonials']);
 
 
 
