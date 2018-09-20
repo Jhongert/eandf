@@ -20,7 +20,7 @@
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
                         </form>
-                        <a href="/admin/news/{{ $item->id }}" class="btn btn-success">Edit</a>
+                        <a href="/admin/news/{{ $item->id }}/edit" class="btn btn-success">Edit</a>
                         <button type="button" class="btn btn-danger delete" data-id="{{$item->id}}">Delete</button>
                     </div>
                 </div>

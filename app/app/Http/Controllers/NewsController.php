@@ -107,7 +107,7 @@ class NewsController extends Controller
      * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $news, $id)
+    public function update(Request $request, $id)
     {   
         $this->validate(request(), [
             'title' => ['bail',
@@ -137,7 +137,7 @@ class NewsController extends Controller
      * @param  \App\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $news, $id)
+    public function destroy($id)
     {
         $news = News::findOrFail($id);
 

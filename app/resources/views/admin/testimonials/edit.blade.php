@@ -35,9 +35,7 @@
 
                     <div class="form-group" id="status">
                         <input type="checkbox" id="active" name="active" value="1"
-                            @if($data->active == 1)
-                                checked  
-                            @endif
+                            {{ $data->active === 1 ? "checked" : "" }}
                         >
                         <label for="active">Active?</label>
                     </div>

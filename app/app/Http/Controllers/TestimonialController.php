@@ -97,7 +97,7 @@ class TestimonialController extends Controller
      * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function edit(Testimonial $testimonial, $id)
+    public function edit($id)
     {   
         $data = Testimonial::where('id', '=', $id)->firstOrFail();
 
@@ -111,7 +111,7 @@ class TestimonialController extends Controller
      * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Testimonial $testimonial, $id)
+    public function update(Request $request, $id)
     {
         $this->validate(request(), [
             'author' => 'required',
@@ -137,7 +137,7 @@ class TestimonialController extends Controller
      * @param  \App\Testimonial  $testimonial
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Testimonial $testimonial, $id)
+    public function destroy($id)
     {
         $testimonial = Testimonial::findOrFail($id);
 
